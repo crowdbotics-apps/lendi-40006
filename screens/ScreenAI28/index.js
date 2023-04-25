@@ -18,7 +18,9 @@ const MyItemsScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>;
+    <Pressable onPress={() => {
+      navigation.navigate("ScreenAI30");
+    }}><Text style={styles.OugNMEod}>Add a new item for rent</Text></Pressable></View>;
 };
 
 const styles = StyleSheet.create({
@@ -66,6 +68,17 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold'
+  },
+  OugNMEod: {
+    width: 100,
+    height: 50,
+    lineHeight: 14,
+    fontSize: 14,
+    borderRadius: 0,
+    textAlign: "left",
+    position: "absolute",
+    top: 0,
+    color: "#000000"
   }
 });
 export default MyItemsScreen;
