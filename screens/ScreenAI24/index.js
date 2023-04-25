@@ -1,3 +1,4 @@
+import { Pressable } from "react-native";
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 const bookings = [{
@@ -30,7 +31,7 @@ const BookingsScreen = () => {
             <Text style={styles.rentId}>Rent ID: {booking.rentId}</Text>
             <Text style={styles.item}>Item: {booking.item}</Text>
             <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Show Details</Text>
+              <Pressable><Text style={styles.buttonText}>Show Details</Text></Pressable>
             </TouchableOpacity>
           </View>
         </View>)}
