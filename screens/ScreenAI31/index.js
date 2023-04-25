@@ -35,13 +35,19 @@ const AccountScreen = () => {
         <Text style={styles.buttonText}>Terms and Conditions</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Change Password</Text>
+        <Pressable onPress={() => {
+        navigation.navigate("ScreenAI33");
+      }}><Text style={styles.buttonText}>Change Password</Text></Pressable>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Frequently Asked Questions</Text>
+        <Pressable onPress={() => {
+        navigation.navigate("aboutTheApp");
+      }}><Text style={styles.buttonText}>Frequently Asked Questions</Text></Pressable>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Support / Send Feedback</Text>
+        <Pressable onPress={() => {
+        navigation.navigate("supportSendFeedback");
+      }}><Text style={styles.buttonText}>Support / Send Feedback</Text></Pressable>
       </TouchableOpacity>
       <TouchableOpacity style={styles.deleteButton}>
         <Text style={styles.deleteButtonText}>Delete Account</Text>
