@@ -15,7 +15,7 @@ const Untitled10 = () => {
         navigation.navigate("ScreenAI11");
       }}><Text style={styles.AsIDpirO}>My reviews</Text></Pressable><Pressable onPress={() => {
         navigation.navigate("ScreenAI12");
-      }}><Text style={styles.StVqGNKI}>Notification</Text></Pressable><Pressable><Text style={styles.UveiLiXo}>My Favorites</Text></Pressable></ScrollView>
+      }}><Text style={styles.StVqGNKI}>Notification</Text></Pressable><Text style={styles.UveiLiXo}>My Favorites</Text></ScrollView>
     </SafeAreaView>;
 };
 
