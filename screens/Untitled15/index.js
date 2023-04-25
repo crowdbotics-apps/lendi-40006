@@ -13,7 +13,9 @@ const Untitled15 = () => {
       flex: 1
     }}><Pressable onPress={() => {
         navigation.navigate("ScreenAI16");
-      }}><Text style={styles.QCMRvnuN}>Rent Item</Text></Pressable></ScrollView>
+      }}><Text style={styles.QCMRvnuN}>Rent Item</Text></Pressable><Pressable onPress={() => {
+        navigation.navigate("ScreenAI19");
+      }}><Text style={styles.yvMzIwLN}>See all available items </Text></Pressable></ScrollView>
     </SafeAreaView>;
 };
 
@@ -22,6 +24,13 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   QCMRvnuN: {
+    width: 100,
+    height: 50,
+    lineHeight: 14,
+    fontSize: 14,
+    borderRadius: 0
+  },
+  yvMzIwLN: {
     width: 100,
     height: 50,
     lineHeight: 14,
