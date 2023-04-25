@@ -1,31 +1,86 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
-const ReviewScreen = () => {
+const CameraScreen = () => {
+  const [image, setImage] = useState(null);
+  const [video, setVideo] = useState(null);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1
+    });
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+  const pickVideo = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1
+    });
+
+    if (!result.cancelled) {
+      setVideo(result.uri);
+    }
+  };
+
+  const takePicture = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1
+    });
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+  const takeVideo = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1
+    });
+
+    if (!result.cancelled) {
+      setVideo(result.uri);
+    }
+  };
+
   return <View style={styles.container}>
-      <TouchableOpacity style={styles.closeButton}>
-        <Text style={styles.closeButtonText}>Close</Text>
-      </TouchableOpacity>
-      <View style={styles.ratingContainer}>
-        <Text style={styles.averageRating}>4.5</Text>
-        <Image source={require('../assets/star.png')} style={styles.starIcon} />
-        <Image source={require('../assets/star.png')} style={styles.starIcon} />
-        <Image source={require('../assets/star.png')} style={styles.starIcon} />
-        <Image source={require('../assets/star.png')} style={styles.starIcon} />
-        <Image source={require('../assets/half_star.png')} style={styles.starIcon} />
+      <Text style={styles.title}>Upload or Capture Media</Text>
+      <View style={styles.mediaContainer}>
+        {image && <Image source={{
+        uri: image
+      }} style={styles.media} />}
+        {video && <Video source={{
+        uri: video
+      }} style={styles.media} useNativeControls resizeMode="contain" />}
       </View>
-      <View style={styles.reviewContainer}>
-        <View style={styles.review}>
-          <Text style={styles.reviewRate}>4.0</Text>
-          <Text style={styles.reviewText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel bibendum bibendum, velit sapien bibendum sapien, vel bibendum sapien sapien vel bibendum sapien.</Text>
-        </View>
-        <View style={styles.profile}>
-          <Image source={require('../assets/profile_picture.png')} style={styles.profilePicture} />
-          <View style={styles.profileInfo}>
-            <Text style={styles.profileName}>John Doe</Text>
-            <Text style={styles.reviewDate}>June 1, 2021 - 10:30 AM</Text>
-          </View>
-        </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={pickImage}>
+          <Text style={styles.buttonText}>Choose Image</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={pickVideo}>
+          <Text style={styles.buttonText}>Choose Video</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={takePicture}>
+          <Text style={styles.buttonText}>Take Picture</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={takeVideo}>
+          <Text style={styles.buttonText}>Take Video</Text>
+        </TouchableOpacity>
       </View>
     </View>;
 };
@@ -33,69 +88,42 @@ const ReviewScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingHorizontal: 20,
-    paddingTop: 50
-  },
-  closeButton: {
-    alignSelf: 'flex-end',
-    padding: 10
-  },
-  closeButtonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333'
-  },
-  ratingContainer: {
-    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 30,
+    justifyContent: 'center',
+    backgroundColor: '#fff'
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 20
   },
-  averageRating: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    marginRight: 10
+  mediaContainer: {
+    width: '80%',
+    height: 300,
+    backgroundColor: '#eee',
+    marginBottom: 20,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  starIcon: {
-    width: 25,
-    height: 25
+  media: {
+    width: '100%',
+    height: '100%'
   },
-  reviewContainer: {
-    flex: 1
-  },
-  review: {
-    marginBottom: 20
-  },
-  reviewRate: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10
-  },
-  reviewText: {
-    fontSize: 16,
-    lineHeight: 24
-  },
-  profile: {
+  buttonContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    width: '80%'
   },
-  profilePicture: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 10
+  button: {
+    backgroundColor: '#007AFF',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10
   },
-  profileInfo: {
-    flex: 1
-  },
-  profileName: {
-    fontSize: 18,
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
     fontWeight: 'bold'
-  },
-  reviewDate: {
-    fontSize: 14,
-    color: '#999'
   }
 });
-export default ReviewScreen;
+export default CameraScreen;
