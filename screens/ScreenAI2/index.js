@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import { useNavigation } from "@react-navigation/native";
+import { Pressable } from "react-native";
+import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const UserProfileScreen = () => {
+  const navigation = useNavigation();
   const [fullName, setFullName] = useState('John Doe');
   const [phoneNumber, setPhoneNumber] = useState('123-456-7890');
   const [streetAddress, setStreetAddress] = useState('123 Main St');
@@ -79,14 +82,16 @@ const UserProfileScreen = () => {
       </View>
       {!isEditMode ? <TouchableOpacity style={styles.editButton} onPress={handleEdit}>
           <Text style={styles.editButtonText}>Edit</Text>
-        </TouchableOpacity> : <View style={styles.editModeButtonsContainer}>
+        </TouchableOpacity> : <Pressable onPress={() => {
+      navigation.navigate("ScreenAI9");
+    }}><View style={styles.editModeButtonsContainer}>
           <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
             <Text style={styles.cancelButtonText}>Cancel</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.saveButton} onPress={handleSaveChanges}>
             <Text style={styles.saveButtonText}>Save</Text>
           </TouchableOpacity>
-        </View>}
+        </View></Pressable>}
     </View>;
 };
 
