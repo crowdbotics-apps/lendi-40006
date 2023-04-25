@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import { useNavigation } from "@react-navigation/native";
+import { Pressable } from "react-native";
+import { useState } from 'react';
 import { View, Text, TouchableOpacity, Switch, StyleSheet } from 'react-native';
 
 const AccountScreen = () => {
+  const navigation = useNavigation();
   const [notifications, setNotifications] = useState(false);
   return <View style={styles.container}>
       <TouchableOpacity style={styles.button}>
@@ -17,7 +20,9 @@ const AccountScreen = () => {
         <Text style={styles.buttonText}>Payments History</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>My Wallet</Text>
+        <Pressable onPress={() => {
+        navigation.navigate("ScreenAI32");
+      }}><Text style={styles.buttonText}>My Wallet</Text></Pressable>
       </TouchableOpacity>
       <View style={styles.notificationContainer}>
         <Text style={styles.notificationText}>Notifications</Text>
