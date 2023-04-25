@@ -1,3 +1,4 @@
+import { Pressable } from "react-native";
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 const notifications = [{
@@ -25,7 +26,7 @@ const NotificationListScreen = () => {
         <Text style={styles.notificationTitle}>{item.title}</Text>
         <Text style={styles.notificationText}>{item.summary}</Text>
       </View>
-      {!item.read && <Text style={styles.markAsRead}>Mark as read</Text>}
+      {!item.read && <Pressable><Text style={styles.markAsRead}>Mark as read</Text></Pressable>}
     </TouchableOpacity>;
 
   return <View style={styles.container}>
