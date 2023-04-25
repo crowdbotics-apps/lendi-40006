@@ -21,7 +21,9 @@ const Untitled10 = () => {
         navigation.navigate("Untitled15");
       }}><Text style={styles.hekFoKxK}>Specific item</Text></Pressable><Pressable onPress={() => {
         navigation.navigate("ScreenAI24");
-      }}><Text style={styles.NsEgTgOU}>My Bookings</Text></Pressable></ScrollView>
+      }}><Text style={styles.NsEgTgOU}>My Bookings</Text></Pressable><Pressable onPress={() => {
+        navigation.navigate("messagesListing");
+      }}><Text style={styles.tCXEzYVE}>Messages</Text></Pressable></ScrollView>
     </SafeAreaView>;
 };
 
@@ -58,6 +60,13 @@ const styles = StyleSheet.create({
     borderRadius: 0
   },
   NsEgTgOU: {
+    width: 100,
+    height: 50,
+    lineHeight: 14,
+    fontSize: 14,
+    borderRadius: 0
+  },
+  tCXEzYVE: {
     width: 100,
     height: 50,
     lineHeight: 14,
